@@ -1,0 +1,13 @@
+{
+  "name": "severino.ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "sucrase-node src/index.ts",
+    "dev": "nodemon --exec sucrase-node src/index.ts"
+  },
+  "devDependencies": {
+    "sucrase": "^3.16.0"
+  }
+}
