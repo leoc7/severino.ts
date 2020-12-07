@@ -1,5 +1,8 @@
+import { Message } from 'discord.js';
 import { IParsedCommand } from '../../command/command-parser';
 import { BaseCommandPlugin } from '../base-command-plugin';
+import Jimp from 'jimp';
+import path from 'path';
 
 class PhilosophersPlugin extends BaseCommandPlugin {
     constructor() {
@@ -9,7 +12,7 @@ class PhilosophersPlugin extends BaseCommandPlugin {
         this.attachEvents();
 
         this.addCommand({
-            key: 'philosophers',
+            key: 'filo',
             params: [
                 {
                     name: 'text',
@@ -20,10 +23,18 @@ class PhilosophersPlugin extends BaseCommandPlugin {
         });
     }
 
-    private onPhilosophers(command: IParsedCommand, message: any) {
+    private async onPhilosophers(command: IParsedCommand, message: Message) {
         const [text] = command.params;
 
-        console.log(text, message);
+        const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
+
+        Jimp.read(path.join(__dirname, '..', '..', '..', 'assets', 'martin.png')).then(image => {
+            image.print(font, 20, 30, text).write('teste.png', async () => {
+                await message.channel.send('', {
+                    files: ['teste.png'],
+                });
+            });
+        });
     }
 }
 
