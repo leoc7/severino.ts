@@ -1,6 +1,10 @@
-
 import { Client } from './client/client';
-const client = new Client();
-client.connect();
+import { config } from 'dotenv';
 
-client.plugins.emit('message', 'philosophers testetestatasdfasdf');
+config();
+
+const client = new Client({
+    token: process.env.TOKEN,
+});
+
+client.connect();
