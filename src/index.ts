@@ -8,3 +8,12 @@ const client = new Client({
 });
 
 client.connect();
+
+/*const a = new PhilosophersImageFactory();
+
+setTimeout(() => {
+    a.generate({
+        text: 'Deixei fazer 15 e chupei o pinto do meu tio'
+    })
+}, 300)
+*/

@@ -4,17 +4,13 @@ class CommandParser {
     public static parse(command: string): IParsedCommand {
         let parts = command.split(' ');
 
-        if (parts.length < 1) {
-            return;
-        }
-
         const key = parts[0];
         parts.splice(0, 1);
         const commandWithoutPreffix = parts.join(' ');
 
         const params = [];
 
-        parts = commandWithoutPreffix.split(', ');
+        parts = commandWithoutPreffix.split('||');
 
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i];

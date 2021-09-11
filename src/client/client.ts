@@ -1,6 +1,8 @@
 import { PluginManager } from '../managers/plugin/plugin-manager';
 import { Client as DiscordClient } from 'discord.js';
 import { PhilosophersPlugin } from '../plugins/philosopers/philosophers-plugin';
+import { TTSPlugin } from '../plugins/tts/tts-plugin';
+import { VoicePlugin } from '../plugins/voice/voice-plugin';
 
 interface IClientData {
     token: string;
@@ -36,7 +38,9 @@ class Client {
             this.plugins.emit('message', message);
         });
 
+        this.plugins.add('voice', new VoicePlugin());
         this.plugins.add('philosophers', new PhilosophersPlugin());
+        this.plugins.add('tts', new TTSPlugin());
     }
 }
 

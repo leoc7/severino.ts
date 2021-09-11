@@ -14,10 +14,11 @@ class BaseCommandPlugin extends BasePlugin {
 
     private onMessage(message: Message) {
         const parsed = CommandParser.parse(message.content);
-
+        
         if (!parsed) return;
         
         const command = this.commands.find(parsed.key);
+        console.log(this.commands)
 
         if (command) {
             if (CommandHelper.match(command, parsed)) {
